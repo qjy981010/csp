@@ -22,7 +22,7 @@ def process_doc(lines, idx):
         else:
             break
     return result, idx
-
+    
 
 def select(doc, selector):
     result = set()
