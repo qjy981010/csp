@@ -11,34 +11,22 @@ int result;
 
 struct Node {
     unordered_set<int> forward;
-    unordered_set<int> backward;
     int flag=-1;
-    int bflag=-1;
     Node(){}
 };
 vector<Node> graph;
+int v[1005][1005] = {{0}};
 
-void go(int root, int flag, int forward) {
-    if (forward == 1) {
-        if (graph[root].flag == flag) {
-            return ;
-        }
-        else {
-            graph[root].flag = flag;
-            for (auto iter = graph[root].forward.begin(); iter != graph[root].forward.end(); ++iter) {
-                go(*iter, flag, forward);
-            }
-        }
+void go(int root, int flag) {
+    if (graph[root].flag == flag) {
+        return ;
     }
     else {
-        if (graph[root].bflag == flag) {
-            return ;
-        }
-        else {
-            graph[root].bflag = flag;
-            for (auto iter = graph[root].backward.begin(); iter != graph[root].backward.end(); ++iter) {
-                go(*iter, flag, forward);
-            }
+        graph[root].flag = flag;
+        v[root][flag] = 1;
+        v[flag][root] = 1;
+        for (auto iter = graph[root].forward.begin(); iter != graph[root].forward.end(); ++iter) {
+            go(*iter, flag);
         }
     }
 }
@@ -52,17 +40,16 @@ int main() {
     for (int i = 0; i != M; ++i) {
         cin >> source >> target;
         graph[source-1].forward.insert(target-1);
-        graph[target-1].backward.insert(source-1);
     }
-    int count, result=0;
+    int j, result=0;
     for (int i = 0; i != N; ++i) {
-        go(i, i, 1);
-        go(i, i, 0);
-        count = 0;
-        for (int j = 0; j != N; ++j) {
-            if (graph[j].flag == i || graph[j].bflag == i) ++count;
+        go(i, i);
+    }
+    for (int i = 0; i != N; ++i) {
+        for (j = 0; j != N; ++j) {
+            if (v[i][j] != 1) break;
         }
-        if (count == N) ++result;
+        if (j == N) ++result;
     }
     cout << result << endl;
     return 0;
