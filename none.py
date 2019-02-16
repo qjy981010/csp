@@ -4,3 +4,17 @@ class Archmage(MinionCard ) :
 
     def create_minion (self, player) :
         return Minion(4, 7, spell_damage = 1)
+
+
+{
+    name:   "archmage"
+    ATK:    4
+    DEF:    7
+    COST:   6
+    DUR:    -1
+    TYPE:   "Minion"
+    CLASS:  "Neutral"
+    RACE:   None
+    RARITY: "Common"
+    DESCRIPTION: "Spell Damage +1"
+}
