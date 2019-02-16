@@ -7,7 +7,7 @@ class Archmage(MinionCard ) :
 
 
 {
-    name:   "archmage"
+    NAME:   "archmage"
     ATK:    4
     DEF:    7
     COST:   6
