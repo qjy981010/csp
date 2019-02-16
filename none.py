@@ -14,7 +14,7 @@ class Archmage(MinionCard ) :
     DUR:    -1
     TYPE:   "Minion"
     CLASS:  "Neutral"
-    RACE:   None
+    RACE:   NIL
     RARITY: "Common"
     DESCRIPTION: "Spell Damage +1"
 }
